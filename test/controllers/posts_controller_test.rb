@@ -5,9 +5,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @post = posts(:one)
   end
 
+  teardown do
+    Rails.cache.clear
+  end
+
   test "should get index" do
     get posts_url
     assert_response :success
+    assert_match "Posts", @response.body
   end
 
   test "should get new" do
@@ -19,8 +24,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Post.count") do
       post posts_url, params: { post: { body: @post.body, title: @post.title } }
     end
-
     assert_redirected_to post_url(Post.last)
+    assert_equal "Post was successfully created.", flash[:notice]
   end
 
   test "should show post" do
@@ -34,15 +39,17 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update post" do
-    patch post_url(@post), params: { post: { body: @post.body, title: @post.title } }
+    patch post_url(@post), params: { post: { title: "updated title" } }
     assert_redirected_to post_url(@post)
+    @post.reload
+    assert_equal "updated title", @post.title
   end
 
   test "should destroy post" do
     assert_difference("Post.count", -1) do
       delete post_url(@post)
     end
-
     assert_redirected_to posts_url
+    assert_equal "Post was successfully destroyed.", flash[:notice]
   end
 end
