@@ -28,6 +28,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Post was successfully created.", flash[:notice]
   end
 
+  test "should return 400 if received malformed request" do
+    post posts_url, params: { data: "this can't be processed" }
+    assert_response :bad_request
+  end
+
+  test "should return 422 if received invalid post" do
+    post posts_url, params: { post: { invalid_param_1: "first", invalid_param_2: "second" } }
+    assert_response :unprocessable_entity
+  end
+
   test "should show post" do
     get post_url(@post)
     assert_response :success

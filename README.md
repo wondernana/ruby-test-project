@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##Example test automation project for a demo Ruby on Rails application.##
+Application code is under `app/` directory, test code under `test/`.
 
-Things you may want to cover:
+Includes different level tests:
 
-* Ruby version
+- system/ e2e tests are run with `rails test test/system/`
+- functional / API tests are run with `rails test test/controllers`
+- integration tests are run with `rails test test/integration`
+- unit tests are run with `rails test test/models`
 
-* System dependencies
+To run all tests use:
+`rails test`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To start the app use:
+`rails s`
