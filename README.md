@@ -5,7 +5,7 @@ Application code is under `app/` directory, test code under `test/`.
 
 Includes different level tests:
 
-- system/ e2e tests are run with `rails test test/system/`
+- system / e2e tests are run with `rails test test/system/`
 - functional / API tests are run with `rails test test/controllers`
 - integration tests are run with `rails test test/integration`
 - unit tests are run with `rails test test/models`
