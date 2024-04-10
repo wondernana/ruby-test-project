@@ -1,6 +1,6 @@
 # README
 
-##Example test automation project for a demo Ruby on Rails application.##
+## Example test automation project for a demo Ruby on Rails application. ##
 Application code is under `app/` directory, test code under `test/`.
 
 Includes different level tests:
